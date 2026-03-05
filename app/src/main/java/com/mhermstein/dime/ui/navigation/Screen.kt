@@ -1,0 +1,1 @@
+sealed class Screen {\n    object Home : Screen()\n    object Camera : Screen()\n    object Gps : Screen()\n    object Ruler : Screen()\n    object History : Screen()\n    object Settings : Screen()\n}
