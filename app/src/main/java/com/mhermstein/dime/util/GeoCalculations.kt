@@ -30,7 +30,7 @@ object GeoCalculations {
 
     fun calculateZoomLevel(lat: Double): Int {
         // Simplified formula for calculating zoom level based on latitude
-        return (Math.log(360.0 / 256) / Math.log(2) - Math.log(Math.cos(Math.toRadians(lat))) / Math.log(2)).toInt()
+        return (Math.log(360.0 / 256.0) / Math.log(2.0) - Math.log(Math.cos(Math.toRadians(lat))) / Math.log(2.0)).toInt()
     }
 
     fun getTileUrl(zoom: Int, x: Int, y: Int): String {

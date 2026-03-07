@@ -1,1 +1,10 @@
-sealed class Screen {\n    object Home : Screen()\n    object Camera : Screen()\n    object Gps : Screen()\n    object Ruler : Screen()\n    object History : Screen()\n    object Settings : Screen()\n}
+package com.mhermstein.dime.ui.navigation
+
+sealed class Screen {
+    object Home : Screen()
+    object Camera : Screen()
+    object Gps : Screen()
+    object Ruler : Screen()
+    object History : Screen()
+    object Settings : Screen()
+}

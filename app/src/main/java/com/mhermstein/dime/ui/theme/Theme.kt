@@ -1,3 +1,5 @@
+package com.mhermstein.dime.ui.theme
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -5,9 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun DiMeTheme(darkTheme: Boolean = false, dynamicColor: Boolean = false, content: @Composable () -> Unit) {
-    val colorScheme = when {
-        darkTheme -> darkColorScheme(
+fun DiMeTheme(
+    darkTheme: Boolean = false,
+    content: @Composable () -> Unit
+) {
+    val colorScheme = if (darkTheme) {
+        darkColorScheme(
             primary = Color(0xFF6200EE),
             onPrimary = Color.White,
             secondary = Color(0xFF03DAC6),
@@ -17,7 +22,8 @@ fun DiMeTheme(darkTheme: Boolean = false, dynamicColor: Boolean = false, content
             surface = Color(0xFF121212),
             onSurface = Color.White
         )
-        else -> lightColorScheme(
+    } else {
+        lightColorScheme(
             primary = Color(0xFF6200EE),
             onPrimary = Color.White,
             secondary = Color(0xFF03DAC6),
@@ -29,7 +35,5 @@ fun DiMeTheme(darkTheme: Boolean = false, dynamicColor: Boolean = false, content
         )
     }
 
-    MaterialTheme(colorScheme = colorScheme) {
-        content()  // provide the content within the theme
-    }
+    MaterialTheme(colorScheme = colorScheme, content = content)
 }

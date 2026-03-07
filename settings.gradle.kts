@@ -1,14 +1,18 @@
 pluginManagement {
     repositories {
+        google()
         gradlePluginPortal()
         mavenCentral()
-        // Add any other repositories you need
     }
 }
 
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        google()
         mavenCentral()
-        // Add additional repositories if needed
     }
 }
+
+rootProject.name = "DiMe"
+include(":app")

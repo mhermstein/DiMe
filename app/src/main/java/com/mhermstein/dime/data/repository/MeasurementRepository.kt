@@ -1,4 +1,10 @@
+package com.mhermstein.dime.data.repository
+
+import com.mhermstein.dime.data.local.dao.MeasurementDao
+import com.mhermstein.dime.data.local.entity.MeasurementEntity
+import com.mhermstein.dime.domain.model.Measurement
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class MeasurementRepository(private val measurementDao: MeasurementDao) {
 
@@ -7,22 +13,20 @@ class MeasurementRepository(private val measurementDao: MeasurementDao) {
     }
 
     suspend fun updateMeasurement(measurement: Measurement) {
-        measurementDao.update(MeasurementEntity.fromDomain(measurement))
+        val id = measurement.id.toLongOrNull() ?: 0L
+        measurementDao.update(MeasurementEntity.fromDomain(measurement, id))
     }
 
     suspend fun deleteMeasurement(measurementId: Long) {
         measurementDao.deleteById(measurementId)
     }
 
-    suspend fun getMeasurementById(measurementId: Long): Measurement? {
-        return measurementDao.getById(measurementId)?.toDomain()
-    }
+    suspend fun getMeasurementById(measurementId: Long): Measurement? =
+        measurementDao.getById(measurementId)?.toDomain()
 
-    fun getAllMeasurements(): Flow<List<Measurement>> {
-        return measurementDao.getAll().map { entities -> entities.map { it.toDomain() } }
-    }
+    fun getAllMeasurements(): Flow<List<Measurement>> =
+        measurementDao.getAll().map { entities -> entities.map { it.toDomain() } }
 
-    fun getMeasurementsByType(type: String): Flow<List<Measurement>> {
-        return measurementDao.getByType(type).map { entities -> entities.map { it.toDomain() } }
-    }
+    fun getMeasurementsByType(type: String): Flow<List<Measurement>> =
+        measurementDao.getByType(type).map { entities -> entities.map { it.toDomain() } }
 }
